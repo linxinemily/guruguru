@@ -13,3 +13,4 @@
 
 Route::get('/', 'ShopController@index');
 Route::resource('shops', 'ShopController');
+Route::resource('drinks', 'DrinkController');

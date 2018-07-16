@@ -8,9 +8,9 @@
 	<!-- <a href="/shops/create">Create Shop</a> -->
 
 	<ul>
-	@foreach ($shops as $shop)
+	@foreach ($shops as $shop) <!-- 抓出來塞到$shop裡面 -->
 	<li>
-		{{ $shop->name }} - {{ $shop->address }} 
+		{{ $shop->name }} - {{ $shop->address }}  <!-- $shop 隨便取 -->
 		<!-- <a href="{{ '/shops/' . $shop->id . '/edit'}}">Edit</a> -->
 		<!-- <a href="/shops/{{ $shop->id }}/edit">Edit</a> -->
 
@@ -21,6 +21,12 @@
 			<input type="hidden" name="_method" value="delete">
 			<input type="submit" value="Delete">
 		</form>
+
+		<ul>
+			@foreach ($shop->drinks as $drink)
+			<li>{{ $drink->name }} -  {{ $drink->price }}</li>
+			@endforeach
+		</ul>
 	</li>
 	@endforeach
 	</ul>

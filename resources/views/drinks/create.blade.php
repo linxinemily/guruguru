@@ -2,7 +2,8 @@
 
 @section('main')
 
-<h1>Create Shops</h1>
+<h1>Create Drinks</h1>
+
 
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -14,22 +15,28 @@
     </div>
 @endif
 
-<form action="{{ route('shops.store') }}" method="POST">
+
+<form action="{{ route('drinks.store') }}" method="POST">
+
 
 	@csrf
-	
+
 	<div class="form-group">
-		<label for="">店名</label>
-		<input class="form-control" type="text" name="name">	
+		<label for="">Shop</label>
+		<input type="text" name="shop_id">
+	</div>
+	<div class="form-group">
+		<label for="">飲料名稱</label>
+		<input type="text" name="name">	
 	</div>
 
 	<div class="form-group">
-		<label for="">地址</label>
-		<input class="form-control" type="text" name="address">	
+		<label for="">飲料價格</label>
+		<input type="text" name="price">	
 	</div>
 
 	<div class="form-group">
-		<input class="btn btn-primary" type="submit">
+		<input type="submit">
 	</div>
 
 </form>

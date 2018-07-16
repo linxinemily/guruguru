@@ -9,9 +9,9 @@ class ShopController extends Controller
 {
     public function index()
     {
-    	$shops = Shop::all(); //取出此class(modle)當中的所有資料
+    	$shops = Shop::all(); //取出此class(modle)當中的所有資料存入$shops變數
     	// dd($shops); →直接顯示出陣列在頁面上（JSON格式）
-    	return view('shops.index', compact('shops')); //在index.blade.php頁面上呈現此陣列
+    	return view('shops.index', compact('shops')); //在index.blade.php頁面上以陣列方式呈現此$shops變數
     }
 
 
@@ -24,16 +24,23 @@ class ShopController extends Controller
     {
     	$data = $request->all();
 
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required'
+        ], [ 'name.required' => 'fsdfasdfafsafs' ]);
+
     	$shop = new Shop;
     	$shop->name = $data['name'];
     	$shop->address = $data['address'];
     	$shop->save();
 
-    	return redirect('/');
+    	return redirect('/drinks/create');
     }
 
-    public function edit(Shop $shop)
+    public function edit(Shop $shop) //Shop為$shop此變數實體化後（＝物件）的類別，變數名稱可隨便取，但在這裡因為有連接入口有設定此變數，所以必須和入口的變數一樣
     {
+        // dd($shop);
+        // $shop = Shop::find($shop);
         // $shop = Shop::find($id);
     	return view('shops.edit', compact('shop'));
     }
